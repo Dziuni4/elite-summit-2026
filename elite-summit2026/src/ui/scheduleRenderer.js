@@ -8,6 +8,9 @@ export class ScheduleRenderer {
         this.$body = document.getElementById("scheduleBody");
         this.$hint = document.getElementById("scheduleHint");
 
+        this.$wrap = document.getElementById("scheduleWrap");
+        this.$table = this.$wrap?.querySelector("table") ?? null;
+
         this.$colMatch = document.getElementById("schColMatch");
         this.$colTeams = document.getElementById("schColTeams");
         this.$colDate = document.getElementById("schColDate");
@@ -18,9 +21,14 @@ export class ScheduleRenderer {
     render(tournament) {
         if (!tournament) return;
 
-        // nagłówki (PL/EN)
+        this.applyLayoutClasses();
+
         if (this.$title) this.$title.textContent = this.i18n.t("schedule.title");
-        if (this.$hint) this.$hint.textContent = this.i18n.t("schedule.hint");
+        if (this.$hint) {
+            this.$hint.textContent = this.i18n.t("schedule.hint");
+            this.$hint.classList.add("muted", "small");
+            this.$hint.removeAttribute("style");
+        }
 
         if (this.$colMatch) this.$colMatch.textContent = this.i18n.t("schedule.col.match");
         if (this.$colTeams) this.$colTeams.textContent = this.i18n.t("schedule.col.teams");
@@ -38,8 +46,28 @@ export class ScheduleRenderer {
         });
 
         if (!this.$body) return;
-
         this.$body.innerHTML = matches.map((m) => this.rowHtml(tournament, m)).join("");
+    }
+
+    applyLayoutClasses() {
+        // sekcja -> .section
+        const section = this.$title?.closest("section");
+        if (section) section.classList.add("section");
+
+        // wrap -> container + card (żeby pasowało do reszty)
+        if (this.$wrap) {
+            this.$wrap.classList.add("container", "card");
+            this.$wrap.removeAttribute("style");
+        }
+
+        // table już ma class="table" w index.html, ale zostawmy na pewno
+        if (this.$table) {
+            this.$table.classList.add("table");
+        }
+
+        // usuń inline style z nagłówków (te #ddd psują dark theme)
+        const ths = this.$table?.querySelectorAll("thead th") ?? [];
+        ths.forEach((th) => th.removeAttribute("style"));
     }
 
     rowHtml(tournament, match) {
@@ -55,33 +83,48 @@ export class ScheduleRenderer {
 
         const { date, time } = this.formatDateTime(match.scheduledAt);
 
-        const statusText = this.statusLabel(match.status);
+        const statusText = this.statusText(match.status);
         const dotClass =
             match.status === MatchStatus.LIVE
                 ? "dot live"
-                : (match.status === MatchStatus.FINISHED ? "dot finished" : "dot");
+                : match.status === MatchStatus.FINISHED
+                    ? "dot finished"
+                    : "dot";
 
-        const series = match.computeSeriesScore();
-        const seriesText = (match.teamA && match.teamB) ? `${series.a}:${series.b}` : "—";
+        // Wynik serii (np. BO3 2:1) jako pill – pasuje do stylistyki Bracket
+        const series = match.computeSeriesScore?.() ?? { a: 0, b: 0 };
+        const hasTeams = Boolean(match.teamA && match.teamB);
+        const seriesText = hasTeams ? `${series.a}:${series.b}` : "—";
+
+        const pillClass =
+            match.status === MatchStatus.LIVE
+                ? "pill live"
+                : match.status === MatchStatus.FINISHED
+                    ? "pill finished"
+                    : "pill";
 
         return `
       <tr>
         <td>
-          <strong>${stageLabel}</strong>
+          <span class="pill">${this.escape(stageLabel)}</span>
         </td>
 
         <td>
-          ${this.escape(aName)} vs ${this.escape(bName)}
-          <span class="muted" style="margin-left:8px;font-weight:900;">(${seriesText})</span>
+          <strong>${this.escape(aName)}</strong>
+          <span class="muted">vs</span>
+          <strong>${this.escape(bName)}</strong>
+          <span style="display:inline-block;margin-left:10px;">
+            <span class="${pillClass}">${this.escape(seriesText)}</span>
+          </span>
         </td>
 
-        <td>${date}</td>
-        <td>${time}</td>
+        <td class="muted">${this.escape(date)}</td>
+        <td class="muted">${this.escape(time)}</td>
 
         <td>
           <span class="badge">
             <span class="${dotClass}"></span>
-            <span style="font-weight:900;">${statusText}</span>
+            <strong>${this.escape(statusText)}</strong>
           </span>
         </td>
       </tr>
@@ -89,14 +132,13 @@ export class ScheduleRenderer {
     }
 
     stageLabel(stage) {
-        if (stage?.startsWith("qf")) return `${this.i18n.t("stage.qf")} ${stage.replace("qf", "")}`;
-        if (stage?.startsWith("sf")) return `${this.i18n.t("stage.sf")} ${stage.replace("sf", "")}`;
-        if (stage === "final") return this.i18n.t("stage.final");
-        if (stage === "third") return this.i18n.t("stage.third");
-        return stage ?? "—";
+        // Jeżeli masz enum/stałe w models, to można to rozbudować.
+        // Na razie: fallback do "stage" albo TBA.
+        if (!stage) return this.i18n.t("common.tba");
+        return stage;
     }
 
-    statusLabel(status) {
+    statusText(status) {
         switch (status) {
             case MatchStatus.LIVE:
                 return this.i18n.t("status.live");
@@ -133,6 +175,8 @@ export class ScheduleRenderer {
         return String(str ?? "")
             .replaceAll("&", "&amp;")
             .replaceAll("<", "&lt;")
-            .replaceAll(">", "&gt;");
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
     }
 }
