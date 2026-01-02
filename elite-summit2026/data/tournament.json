@@ -1,0 +1,123 @@
+{
+  "meta": {
+    "name": "Elite Summit 2026",
+    "mode": "online",
+    "teamsCount": 8,
+    "playersCount": 40,
+    "feePerPersonPLN": 20,
+    "discordUrl": "",
+    "contact": "",
+    "organizer": "",
+    "rulesPdfUrl": ""
+  },
+  "twitch": {
+    "channel": "nailixaa_",
+    "parents": []
+  },
+  "i18n": {
+    "pl": {
+      "nav.info": "Info",
+      "nav.bracket": "Drabinka",
+      "nav.live": "LIVE",
+      "nav.schedule": "Harmonogram",
+      "nav.teams": "Drużyny",
+      "nav.news": "Aktualności",
+      "nav.rules": "Wpisowe i zasady",
+      "hero.tag": "Turniej CS2 • Online",
+      "hero.subtitle": "Oficjalna strona turnieju: drabinka, harmonogram, transmisja Twitch i aktualności.",
+      "live.title": "Transmisja LIVE (Twitch)",
+      "live.open": "Otwórz na Twitch",
+      "live.missingParents": "Aby Twitch działał na stronie, dodaj w JSON parametr parent (Twoja domena / pages.dev).",
+      "live.noChannel": "Brak ustawionego kanału Twitch.",
+      "common.tba": "Do ustalenia"
+    },
+    "en": {
+      "nav.info": "Info",
+      "nav.bracket": "Bracket",
+      "nav.live": "LIVE",
+      "nav.schedule": "Schedule",
+      "nav.teams": "Teams",
+      "nav.news": "News",
+      "nav.rules": "Fees & rules",
+      "hero.tag": "CS2 Tournament • Online",
+      "hero.subtitle": "Official tournament site: bracket, schedule, Twitch live stream and updates.",
+      "live.title": "LIVE Stream (Twitch)",
+      "live.open": "Open on Twitch",
+      "live.missingParents": "To make Twitch embed work, add the parent parameter in JSON (your domain / pages.dev).",
+      "live.noChannel": "No Twitch channel configured.",
+      "common.tba": "TBA"
+    }
+  },
+  "teams": [
+    { "id": "t1", "name": "Team A", "players": ["Player 1", "Player 2", "Player 3", "Player 4", "Player 5"], "captain": "Player 1" },
+    { "id": "t2", "name": "Team B", "players": ["Player 1", "Player 2", "Player 3", "Player 4", "Player 5"], "captain": "Player 1" },
+    { "id": "t3", "name": "Team C", "players": ["Player 1", "Player 2", "Player 3", "Player 4", "Player 5"], "captain": "Player 1" },
+    { "id": "t4", "name": "Team D", "players": ["Player 1", "Player 2", "Player 3", "Player 4", "Player 5"], "captain": "Player 1" },
+    { "id": "t5", "name": "Team E", "players": ["Player 1", "Player 2", "Player 3", "Player 4", "Player 5"], "captain": "Player 1" },
+    { "id": "t6", "name": "Team F", "players": ["Player 1", "Player 2", "Player 3", "Player 4", "Player 5"], "captain": "Player 1" },
+    { "id": "t7", "name": "Team G", "players": ["Player 1", "Player 2", "Player 3", "Player 4", "Player 5"], "captain": "Player 1" },
+    { "id": "t8", "name": "Team H", "players": ["Player 1", "Player 2", "Player 3", "Player 4", "Player 5"], "captain": "Player 1" }
+  ],
+  "matches": [
+    {
+      "id": "m-sf1",
+      "stage": "sf1",
+      "teamA": "t1",
+      "teamB": "t2",
+      "scheduledAt": null,
+      "status": "upcoming",
+      "maps": [
+        { "map": "Mirage", "a": null, "b": null },
+        { "map": "Nuke", "a": null, "b": null },
+        { "map": "Inferno", "a": null, "b": null }
+      ]
+    },
+    {
+      "id": "m-sf2",
+      "stage": "sf2",
+      "teamA": "t3",
+      "teamB": "t4",
+      "scheduledAt": null,
+      "status": "upcoming",
+      "maps": [
+        { "map": "Mirage", "a": null, "b": null },
+        { "map": "Nuke", "a": null, "b": null },
+        { "map": "Inferno", "a": null, "b": null }
+      ]
+    },
+    {
+      "id": "m-final",
+      "stage": "final",
+      "teamA": null,
+      "teamB": null,
+      "scheduledAt": null,
+      "status": "upcoming",
+      "maps": [
+        { "map": "Mirage", "a": null, "b": null },
+        { "map": "Nuke", "a": null, "b": null },
+        { "map": "Inferno", "a": null, "b": null }
+      ]
+    },
+    {
+      "id": "m-third",
+      "stage": "third",
+      "teamA": null,
+      "teamB": null,
+      "scheduledAt": null,
+      "status": "upcoming",
+      "maps": [
+        { "map": "Mirage", "a": null, "b": null },
+        { "map": "Nuke", "a": null, "b": null },
+        { "map": "Inferno", "a": null, "b": null }
+      ]
+    }
+  ],
+  "news": [
+    {
+      "id": "n1",
+      "at": null,
+      "title": "Start zapisów",
+      "body": "Wkrótce podamy szczegóły zapisów i regulamin."
+    }
+  ]
+}
