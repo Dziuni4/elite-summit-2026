@@ -29,7 +29,22 @@
       "live.open": "Otwórz na Twitch",
       "live.missingParents": "Aby Twitch działał na stronie, dodaj w JSON parametr parent (Twoja domena / pages.dev).",
       "live.noChannel": "Brak ustawionego kanału Twitch.",
-      "common.tba": "Do ustalenia"
+      "common.tba": "Do ustalenia",
+      "schedule.title": "📅 Harmonogram",
+      "schedule.hint": "Harmonogram jest generowany automatycznie z drabinki. Daty: TBA, dopóki nie zostaną ustawione.",
+      "schedule.col.match": "Mecz",
+      "schedule.col.teams": "Drużyny",
+      "schedule.col.date": "Data",
+      "schedule.col.time": "Godzina",
+      "schedule.col.status": "Status",
+      "stage.qf": "Ćwierćfinał",
+      "stage.sf": "Półfinał",
+      "stage.final": "Finał",
+      "stage.third": "Mecz o 3. miejsce",
+      "status.upcoming": "Nadchodzący",
+      "status.live": "LIVE",
+      "status.finished": "Zakończony"
+
     },
     "en": {
       "nav.info": "Info",
@@ -45,7 +60,22 @@
       "live.open": "Open on Twitch",
       "live.missingParents": "To make Twitch embed work, add the parent parameter in JSON (your domain / pages.dev).",
       "live.noChannel": "No Twitch channel configured.",
-      "common.tba": "TBA"
+      "common.tba": "TBA",
+      "schedule.title": "📅 Schedule",
+      "schedule.hint": "The schedule is generated automatically from the bracket. Dates are TBA until set.",
+      "schedule.col.match": "Match",
+      "schedule.col.teams": "Teams",
+      "schedule.col.date": "Date",
+      "schedule.col.time": "Time",
+      "schedule.col.status": "Status",
+      "stage.qf": "Quarterfinal",
+      "stage.sf": "Semifinal",
+      "stage.final": "Final",
+      "stage.third": "3rd place match",
+      "status.upcoming": "Upcoming",
+      "status.live": "LIVE",
+      "status.finished": "Finished"
+
     }
   },
   "teams": [
@@ -64,12 +94,14 @@
       "stage": "qf1",
       "teamA": "t1",
       "teamB": "t8",
-      "status": "upcoming",
+      "status": "live",
       "maps": [
         { "map": "Mirage", "a": null, "b": null },
         { "map": "Nuke", "a": null, "b": null },
         { "map": "Inferno", "a": null, "b": null }
-      ]
+      ],
+      "scheduledAt": "2026-02-01T18:00:00+01:00"
+
     },
     {
       "id": "qf2",
