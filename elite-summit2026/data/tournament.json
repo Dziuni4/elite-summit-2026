@@ -43,7 +43,16 @@
       "stage.third": "Mecz o 3. miejsce",
       "status.upcoming": "Nadchodzący",
       "status.live": "LIVE",
-      "status.finished": "Zakończony"
+      "status.finished": "Zakończony",
+      "teams.title": "👥 Drużyny",
+      "teams.hint": "Statusy drużyn aktualizują się automatycznie na podstawie wyników.",
+      "teams.players": "Gracze",
+      "teams.captain": "Kapitan",
+      "teams.status.playing": "w grze",
+      "teams.status.eliminated": "odpadli",
+      "teams.status.winner": "zwycięzca",
+      "teams.place": "Miejsce"
+
 
     },
     "en": {
@@ -74,7 +83,16 @@
       "stage.third": "3rd place match",
       "status.upcoming": "Upcoming",
       "status.live": "LIVE",
-      "status.finished": "Finished"
+      "status.finished": "Finished",
+      "teams.title": "👥 Teams",
+      "teams.hint": "Team statuses update automatically based on match results.",
+      "teams.players": "Players",
+      "teams.captain": "Captain",
+      "teams.status.playing": "playing",
+      "teams.status.eliminated": "eliminated",
+      "teams.status.winner": "winner",
+      "teams.place": "Place"
+
 
     }
   },

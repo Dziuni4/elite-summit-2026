@@ -5,6 +5,8 @@ import { AppController } from "./app/appController.js";
 import { TwitchRenderer } from "./ui/twitchRenderer.js";
 import { BracketRenderer } from "./ui/bracketRenderer.js";
 import { ScheduleRenderer } from "./ui/scheduleRenderer.js";
+import { TeamsRenderer } from "./ui/teamsRenderer.js";
+
 
 
 const state = new AppState();
@@ -21,6 +23,8 @@ const app = new AppController({ state, dataService, i18n });
 const twitchRenderer = new TwitchRenderer({ i18n });
 let bracketRenderer = null;
 let scheduleRenderer = null;
+let teamsRenderer = null;
+
 
 
 
@@ -59,6 +63,12 @@ app.onRender((evt) => {
         scheduleRenderer = new ScheduleRenderer({ i18n });
     }
     scheduleRenderer.render(tournament);
+
+    if (!teamsRenderer) {
+        teamsRenderer = new TeamsRenderer({ i18n });
+    }
+    teamsRenderer.render(tournament, evt.state.outcomes);
+
 
 
 });
