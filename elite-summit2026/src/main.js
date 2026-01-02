@@ -7,6 +7,9 @@ import { BracketRenderer } from "./ui/bracketRenderer.js";
 import { ScheduleRenderer } from "./ui/scheduleRenderer.js";
 import { TeamsRenderer } from "./ui/teamsRenderer.js";
 import { NewsRenderer } from "./ui/newsRenderer.js";
+import { RulesRenderer } from "./ui/rulesRenderer.js";
+import { FooterRenderer } from "./ui/footerRenderer.js";
+
 
 
 
@@ -27,6 +30,9 @@ let bracketRenderer = null;
 let scheduleRenderer = null;
 let teamsRenderer = null;
 let newsRenderer = null;
+let rulesRenderer = null;
+let footerRenderer = null;
+
 
 
 
@@ -77,6 +83,17 @@ app.onRender((evt) => {
         newsRenderer = new NewsRenderer({ i18n });
     }
     newsRenderer.render(tournament);
+
+    if (!rulesRenderer) {
+        rulesRenderer = new RulesRenderer({ i18n });
+    }
+    rulesRenderer.render(tournament);
+
+    if (!footerRenderer) {
+        footerRenderer = new FooterRenderer({ i18n });
+    }
+    footerRenderer.render(tournament);
+
 
 
 

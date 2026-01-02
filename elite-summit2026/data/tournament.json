@@ -5,10 +5,12 @@
     "teamsCount": 8,
     "playersCount": 40,
     "feePerPersonPLN": 20,
-    "discordUrl": "",
-    "contact": "",
-    "organizer": "",
-    "rulesPdfUrl": ""
+    "rulesPdfUrl": "",
+    "organizer": "Elite Summit Team",
+    "discordUrl": "https://discord.gg/3mfnsbQc",
+    "contact": "insta: heroinnix"
+
+
   },
   "twitch": {
     "channel": "nailixaa_",
@@ -55,7 +57,21 @@
       "news.title": "📢 Aktualności",
       "news.hint": "Ogłoszenia przed i w trakcie turnieju. Edytujesz w pliku JSON.",
       "news.tba": "TBA",
-      "news.date": "Data"
+      "news.date": "Data",
+      "rules.title": "💰 Wpisowe i zasady",
+      "rules.fees.title": "Wpisowe",
+      "rules.fees.text": "Wpisowe wynosi {fee} zł za osobę.",
+      "rules.fees.summary": "{players} osób × {fee} zł = {total} zł",
+      "rules.payments": "Szczegóły płatności (BLIK / przelew) zostaną podane przez organizatora.",
+      "rules.short.title": "Zasady skrócone",
+      "rules.list.1": "Skład 5 osób",
+      "rules.list.2": "Brak zmian w składzie po rozpoczęciu turnieju",
+      "rules.list.3": "Zasady fair play i kultura",
+      "rules.pdf": "Pełny regulamin (PDF)",
+      "footer.organizer": "Organizator",
+      "footer.discord": "Discord turnieju",
+      "footer.contact": "Kontakt"
+
 
 
 
@@ -100,7 +116,21 @@
       "news.title": "📢 News",
       "news.hint": "Announcements before and during the tournament. Edit in the JSON file.",
       "news.tba": "TBA",
-      "news.date": "Date"
+      "news.date": "Date",
+      "rules.title": "💰 Fees & rules",
+      "rules.fees.title": "Entry fee",
+      "rules.fees.text": "The entry fee is {fee} PLN per player.",
+      "rules.fees.summary": "{players} players × {fee} PLN = {total} PLN",
+      "rules.payments": "Payment details (BLIK / bank transfer) will be provided by the organizer.",
+      "rules.short.title": "Short rules",
+      "rules.list.1": "5-player roster",
+      "rules.list.2": "No roster changes after tournament start",
+      "rules.list.3": "Fair play and respectful behavior",
+      "rules.pdf": "Full rulebook (PDF)",
+      "footer.organizer": "Organizer",
+      "footer.discord": "Tournament Discord",
+      "footer.contact": "Contact"
+
 
 
 

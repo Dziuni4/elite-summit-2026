@@ -93,10 +93,58 @@
 
     <hr />
 
+    <section id="rules">
+        <h2 id="rulesTitle">💰 Wpisowe i zasady</h2>
+
+        <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));max-width:1100px;">
+
+            <div style="border:1px solid #ddd;border-radius:14px;padding:16px;">
+                <h3 id="feesTitle">Wpisowe</h3>
+                <p id="feesText"></p>
+                <p id="feesSummary" style="font-weight:700;"></p>
+                <p id="paymentsText" style="opacity:.85;"></p>
+            </div>
+
+            <div style="border:1px solid #ddd;border-radius:14px;padding:16px;">
+                <h3 id="rulesShortTitle">Zasady skrócone</h3>
+                <ul id="rulesList" style="line-height:1.7;"></ul>
+
+                <div style="margin-top:14px;">
+                    <a id="rulesPdfLink" href="#" target="_blank" rel="noopener"></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <hr />
+
+
 
     <!-- następne sekcje dodamy w kolejnych krokach -->
 </main>
 
 <script type="module" src="./src/main.js"></script>
+
+<footer id="footer" style="border-top:1px solid #ddd;padding:20px 0;margin-top:40px;">
+    <div style="max-width:1100px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;">
+
+        <div>
+            <strong id="footerTournament">Elite Summit 2026</strong><br />
+            <span id="footerOrganizer" style="opacity:.8;"></span>
+        </div>
+
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+            <a id="footerDiscord" href="#" target="_blank" rel="noopener"></a>
+            <a id="footerContact" href="#"></a>
+        </div>
+
+        <div style="opacity:.7;">
+            © <span id="footerYear"></span>
+        </div>
+
+    </div>
+</footer>
+
 </body>
 </html>
