@@ -13,11 +13,16 @@ export const MatchStatus = Object.freeze({
 });
 
 export const Stage = Object.freeze({
+    QF1: "qf1",
+    QF2: "qf2",
+    QF3: "qf3",
+    QF4: "qf4",
     SF1: "sf1",
     SF2: "sf2",
     FINAL: "final",
     THIRD: "third",
 });
+
 
 /**
  * Jeden wynik mapy w BO3.

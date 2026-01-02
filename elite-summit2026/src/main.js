@@ -3,6 +3,8 @@ import { DataService } from "./services/dataService.js";
 import { I18n, Lang } from "./core/i18n.js";
 import { AppController } from "./app/appController.js";
 import { TwitchRenderer } from "./ui/twitchRenderer.js";
+import { BracketRenderer } from "./ui/bracketRenderer.js";
+
 
 const state = new AppState();
 
@@ -16,6 +18,8 @@ const i18n = new I18n({ pl: {}, en: {} }, Lang.PL);
 
 const app = new AppController({ state, dataService, i18n });
 const twitchRenderer = new TwitchRenderer({ i18n });
+let bracketRenderer = null;
+
 
 // Language buttons
 document.getElementById("langPL").addEventListener("click", () => app.setLang(Lang.PL));
@@ -41,6 +45,13 @@ app.onRender((evt) => {
 
     // twitch
     twitchRenderer.render(tournament);
+
+    if (!bracketRenderer) {
+        bracketRenderer = new BracketRenderer({ i18n });
+    }
+
+    bracketRenderer.render(tournament);
+
 });
 
 app.start();

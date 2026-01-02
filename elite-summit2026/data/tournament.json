@@ -60,11 +60,10 @@
   ],
   "matches": [
     {
-      "id": "m-sf1",
-      "stage": "sf1",
+      "id": "qf1",
+      "stage": "qf1",
       "teamA": "t1",
-      "teamB": "t2",
-      "scheduledAt": null,
+      "teamB": "t8",
       "status": "upcoming",
       "maps": [
         { "map": "Mirage", "a": null, "b": null },
@@ -73,11 +72,34 @@
       ]
     },
     {
-      "id": "m-sf2",
-      "stage": "sf2",
+      "id": "qf2",
+      "stage": "qf2",
+      "teamA": "t4",
+      "teamB": "t5",
+      "status": "upcoming",
+      "maps": [
+        { "map": "Mirage", "a": null, "b": null },
+        { "map": "Nuke", "a": null, "b": null },
+        { "map": "Inferno", "a": null, "b": null }
+      ]
+    },
+    {
+      "id": "qf3",
+      "stage": "qf3",
+      "teamA": "t2",
+      "teamB": "t7",
+      "status": "upcoming",
+      "maps": [
+        { "map": "Mirage", "a": null, "b": null },
+        { "map": "Nuke", "a": null, "b": null },
+        { "map": "Inferno", "a": null, "b": null }
+      ]
+    },
+    {
+      "id": "qf4",
+      "stage": "qf4",
       "teamA": "t3",
-      "teamB": "t4",
-      "scheduledAt": null,
+      "teamB": "t6",
       "status": "upcoming",
       "maps": [
         { "map": "Mirage", "a": null, "b": null },
@@ -85,33 +107,13 @@
         { "map": "Inferno", "a": null, "b": null }
       ]
     },
-    {
-      "id": "m-final",
-      "stage": "final",
-      "teamA": null,
-      "teamB": null,
-      "scheduledAt": null,
-      "status": "upcoming",
-      "maps": [
-        { "map": "Mirage", "a": null, "b": null },
-        { "map": "Nuke", "a": null, "b": null },
-        { "map": "Inferno", "a": null, "b": null }
-      ]
-    },
-    {
-      "id": "m-third",
-      "stage": "third",
-      "teamA": null,
-      "teamB": null,
-      "scheduledAt": null,
-      "status": "upcoming",
-      "maps": [
-        { "map": "Mirage", "a": null, "b": null },
-        { "map": "Nuke", "a": null, "b": null },
-        { "map": "Inferno", "a": null, "b": null }
-      ]
-    }
+
+    { "id": "sf1", "stage": "sf1", "teamA": null, "teamB": null, "status": "upcoming", "maps": [] },
+    { "id": "sf2", "stage": "sf2", "teamA": null, "teamB": null, "status": "upcoming", "maps": [] },
+    { "id": "final", "stage": "final", "teamA": null, "teamB": null, "status": "upcoming", "maps": [] },
+    { "id": "third", "stage": "third", "teamA": null, "teamB": null, "status": "upcoming", "maps": [] }
   ],
+
   "news": [
     {
       "id": "n1",
