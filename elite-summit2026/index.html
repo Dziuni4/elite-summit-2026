@@ -3,21 +3,36 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="./styles.css" />
     <title>Elite Summit 2026</title>
 </head>
 <body>
-<header>
-    <h1 id="heroTitle">Elite Summit 2026</h1>
-    <p id="heroTag"></p>
-    <p id="heroSubtitle"></p>
+<header class="header">
+    <div class="container header__inner">
+        <div class="brand">
+            <img class="brand__logo" src="./assets/logo.png" alt="Elite Summit 2026 logo" />
+            <div class="brand__text">
+                <strong>Elite Summit</strong>
+                <span>2026</span>
+            </div>
+        </div>
 
-    <div>
-        <button id="langPL" type="button">PL</button>
-        <button id="langEN" type="button">EN</button>
+        <nav class="nav">
+            <a href="#live">LIVE</a>
+            <a href="#bracket">Bracket</a>
+            <a href="#schedule">Schedule</a>
+            <a href="#teams">Teams</a>
+            <a href="#news">News</a>
+            <a href="#rules">Rules</a>
+        </nav>
+
+        <div class="lang">
+            <button id="langPL" type="button">PL</button>
+            <button id="langEN" type="button">EN</button>
+        </div>
     </div>
-
-    <hr />
 </header>
+
 
 <main>
     <section id="live">
@@ -29,22 +44,87 @@
 
     <hr />
 
-    <section id="bracket">
-        <h2>🏆 Drabinka (8 drużyn)</h2>
+    <section class="hero">
+        <div class="container hero__inner">
+            <div>
+                <p class="tag" id="heroTag"></p>
+                <h1 id="heroTitle">Elite Summit 2026</h1>
+                <p class="subtitle" id="heroSubtitle"></p>
 
-        <h3>Ćwierćfinały</h3>
-        <div id="match-qf1"></div>
-        <div id="match-qf2"></div>
-        <div id="match-qf3"></div>
-        <div id="match-qf4"></div>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="label">Drużyn</span>
+                        <span class="value">8</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">Graczy</span>
+                        <span class="value">40</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">Wpisowe</span>
+                        <span class="value">20 PLN</span>
+                    </div>
+                </div>
+            </div>
 
-        <h3>Półfinały</h3>
-        <div id="match-sf1"></div>
-        <div id="match-sf2"></div>
+            <div class="card">
+                <h2>Elite Summit 2026</h2>
+                <p class="muted">BO3 • Drabinka 8 drużyn • Online</p>
+                <a class="btn btn--primary" href="#bracket">Zobacz drabinkę</a>
+                <a class="btn btn--ghost" href="#live" style="margin-left:8px;">Transmisja</a>
+            </div>
+        </div>
+    </section>
 
-        <h3>Finały</h3>
-        <div id="match-final"></div>
-        <div id="match-third"></div>
+    <hr />
+
+    <section id="bracket" class="majorBracket">
+        <div class="container">
+            <div class="majorBracket__header">
+                <div class="majorBracket__badge">Elite Summit 2026</div>
+                <h2 class="majorBracket__title">PLAYOFFS BRACKET</h2>
+            </div>
+
+            <div class="majorBracket__gridWrap">
+                <div class="majorBracket__grid">
+
+                    <div class="majorCol">
+                        <div class="majorCol__title">QUARTER-FINALS</div>
+                        <div class="majorCol__stack">
+                            <div id="match-qf1"></div>
+                            <div id="match-qf2"></div>
+                            <div id="match-qf3"></div>
+                            <div id="match-qf4"></div>
+                        </div>
+                    </div>
+
+                    <div class="majorCol">
+                        <div class="majorCol__title">SEMI-FINALS</div>
+                        <div class="majorCol__stack majorCol__stack--sf">
+                            <div id="match-sf1"></div>
+                            <div id="match-sf2"></div>
+                        </div>
+                    </div>
+
+                    <div class="majorCol">
+                        <div class="majorCol__title">FINALS</div>
+                        <div class="majorCol__stack majorCol__stack--final">
+                            <div id="match-final"></div>
+                            <div class="majorThirdTitle">3RD PLACE MATCH</div>
+                            <div id="match-third"></div>
+                        </div>
+                    </div>
+
+                    <div class="majorCol">
+                        <div class="majorCol__title">CHAMPIONS</div>
+                        <div class="majorCol__stack majorCol__stack--champ">
+                            <div id="match-champion"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </section>
 
 
@@ -54,8 +134,8 @@
         <h2 id="scheduleTitle">📅 Harmonogram</h2>
 
         <div id="scheduleWrap" style="max-width:960px;">
-            <table style="width:100%;border-collapse:collapse;" aria-label="Harmonogram meczów">
-                <thead>
+            <table class="table" aria-label="Harmonogram meczów">
+            <thead>
                 <tr>
                     <th style="text-align:left;padding:8px;border-bottom:1px solid #ddd;" id="schColMatch">Mecz</th>
                     <th style="text-align:left;padding:8px;border-bottom:1px solid #ddd;" id="schColTeams">Drużyny</th>
@@ -77,9 +157,7 @@
         <h2 id="teamsTitle">👥 Drużyny</h2>
         <p id="teamsHint" style="opacity:.75;"></p>
 
-        <div id="teamsGrid"
-             style="display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));max-width:1100px;">
-        </div>
+        <div id="teamsGrid" class="teamsGrid"></div>
     </section>
 
     <hr />

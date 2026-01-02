@@ -44,14 +44,13 @@ export class TwitchRenderer {
         this.$hint.textContent = `parent: ${parents.join(", ")}`;
 
         this.$container.innerHTML = `
-      <div style="position:relative;width:100%;max-width:960px;padding-top:56.25%;">
-        <iframe
-          src="${src}"
-          allowfullscreen="true"
-          scrolling="no"
-          style="position:absolute;inset:0;width:100%;height:100%;border:0;">
-        </iframe>
-      </div>
-    `;
+            <div class="ratio">
+                <iframe
+                    src="${src}"
+                    allowfullscreen="true"
+                    scrolling="no">
+                </iframe>
+            </div>
+        `;
     }
 }

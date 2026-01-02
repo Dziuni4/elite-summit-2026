@@ -102,5 +102,26 @@ app.onRender((evt) => {
 
 app.start();
 
+// Mobile/touch: klik w mecz przełącza tooltip z mapami
+document.addEventListener("click", (e) => {
+    const matchEl = e.target.closest?.(".majorMatch");
+    if (!matchEl) return;
+
+    // zamknij inne otwarte
+    document.querySelectorAll(".majorMatch.showDetails").forEach((el) => {
+        if (el !== matchEl) el.classList.remove("showDetails");
+    });
+
+    matchEl.classList.toggle("showDetails");
+});
+
+// klik poza drabinką zamyka tooltipy
+document.addEventListener("click", (e) => {
+    const inMatch = e.target.closest?.(".majorMatch");
+    if (inMatch) return;
+    document.querySelectorAll(".majorMatch.showDetails").forEach((el) => el.classList.remove("showDetails"));
+}, true);
+
+
 // dev helper
 window.__elite = { app };

@@ -154,9 +154,9 @@
       "teamB": "t8",
       "status": "live",
       "maps": [
-        { "map": "Mirage", "a": null, "b": null },
-        { "map": "Nuke", "a": null, "b": null },
-        { "map": "Inferno", "a": null, "b": null }
+        {"map":"Mirage","a":13,"b":9},
+        {"map":"Nuke","a":8,"b":13},
+        {"map":"Inferno","a":13,"b":11}
       ],
       "scheduledAt": "2026-02-01T18:00:00+01:00"
 
@@ -168,9 +168,9 @@
       "teamB": "t5",
       "status": "upcoming",
       "maps": [
-        { "map": "Mirage", "a": null, "b": null },
-        { "map": "Nuke", "a": null, "b": null },
-        { "map": "Inferno", "a": null, "b": null }
+        {"map":"Mirage","a":13,"b":9},
+        {"map":"Nuke","a":8,"b":13},
+        {"map":"Inferno","a":13,"b":11}
       ]
     },
     {
@@ -198,8 +198,16 @@
       ]
     },
 
-    { "id": "sf1", "stage": "sf1", "teamA": null, "teamB": null, "status": "upcoming", "maps": [] },
-    { "id": "sf2", "stage": "sf2", "teamA": null, "teamB": null, "status": "upcoming", "maps": [] },
+    { "id": "sf1", "stage": "sf1", "teamA": null, "teamB": null, "status": "upcoming", "maps": [
+      {"map":"Mirage","a":13,"b":9},
+      {"map":"Nuke","a":8,"b":13},
+      {"map":"Inferno","a":13,"b":11}
+    ] },
+    { "id": "sf2", "stage": "sf2", "teamA": null, "teamB": null, "status": "upcoming", "maps": [
+      {"map":"Mirage","a":13,"b":9},
+      {"map":"Office","a":8,"b":13},
+      {"map":"Inferno","a":13,"b":11}
+    ] },
     { "id": "final", "stage": "final", "teamA": null, "teamB": null, "status": "upcoming", "maps": [] },
     { "id": "third", "stage": "third", "teamA": null, "teamB": null, "status": "upcoming", "maps": [] }
   ],

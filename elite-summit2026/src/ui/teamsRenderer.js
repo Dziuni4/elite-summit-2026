@@ -8,66 +8,86 @@ export class TeamsRenderer {
     }
 
     render(tournament, outcomes) {
-        if (!tournament || !outcomes) return;
+        if (!tournament || !this.$grid) return;
 
-        this.$title.textContent = this.i18n.t("teams.title");
-        this.$hint.textContent = this.i18n.t("teams.hint");
+        if (this.$title) {
+            this.$title.textContent = this.i18n.t("teams.title");
+        }
+        if (this.$hint) {
+            this.$hint.textContent = this.i18n.t("teams.hint");
+        }
 
-        const cards = tournament.teams.map((team) => {
-            const outcome = outcomes.get(team.id) ?? { status: "w grze", place: null };
-            return this.teamCardHtml(team, outcome);
-        });
+        const teams = tournament.teams ?? [];
 
-        this.$grid.innerHTML = cards.join("");
+        this.$grid.innerHTML = teams
+            .map((team) => {
+                const outcome = outcomes?.get(team.id) ?? { status: "playing", place: null };
+                return this.teamCardHtml(team, outcome);
+            })
+            .join("");
     }
 
     teamCardHtml(team, outcome) {
-        const statusLabel = this.statusLabel(outcome);
-        const badgeStyle = this.badgeStyle(outcome);
+        const badgeText = this.badgeText(outcome);
+        const badgeClass = this.badgeClass(outcome);
 
-        const playersHtml = team.players.map((p) => `<li>${p}</li>`).join("");
+        const playersHtml = (team.players ?? [])
+            .map((p) => `<li>${this.escape(p)}</li>`)
+            .join("");
 
         return `
-      <div style="border:1px solid #ddd;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;">
-        
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
-          <strong style="font-size:1.05rem;">${team.name}</strong>
-          <span style="padding:4px 10px;border-radius:999px;font-size:.85rem;font-weight:800;${badgeStyle}">
-            ${statusLabel}
+      <div class="teamcard">
+        <div class="teamcard__head">
+          <strong class="teamname">${this.escape(team.name)}</strong>
+          <span class="teambadge ${badgeClass}">
+            ${badgeText}
           </span>
         </div>
 
-        <div>
-          <div style="font-weight:700;margin-bottom:4px;">${this.i18n.t("teams.players")}</div>
-          <ul style="margin:0;padding-left:18px;line-height:1.6;">
-            ${playersHtml}
+        <div class="teamsection">
+          <div class="teamsection__title">
+            ${this.i18n.t("teams.players")}
+          </div>
+          <ul class="teamplayers">
+            ${playersHtml || `<li class="muted">—</li>`}
           </ul>
         </div>
 
-        <div style="font-size:.9rem;opacity:.85;">
-          ${this.i18n.t("teams.captain")}: <strong>${team.captain ?? "—"}</strong>
+        <div class="teammeta">
+          ${this.i18n.t("teams.captain")}: 
+          <strong>${this.escape(team.captain ?? "—")}</strong>
         </div>
-
-        ${outcome.place ? `
-          <div style="margin-top:6px;padding-top:8px;border-top:1px solid #eee;font-weight:800;">
-            ${this.i18n.t("teams.place")}: ${outcome.place}
-          </div>
-        ` : ""}
       </div>
     `;
     }
 
-    statusLabel(outcome) {
-        if (outcome.place === 1) return this.i18n.t("teams.status.winner");
-        if (outcome.place !== null) return `${this.i18n.t("teams.place")} ${outcome.place}`;
-        if (outcome.status === "odpadli") return this.i18n.t("teams.status.eliminated");
+    badgeText(outcome) {
+        if (outcome.place === 1) {
+            return this.i18n.t("teams.status.winner");
+        }
+
+        if (typeof outcome.place === "number") {
+            return `${this.i18n.t("teams.place")} ${outcome.place}`;
+        }
+
+        if (outcome.status === "odpadli" || outcome.status === "eliminated") {
+            return this.i18n.t("teams.status.eliminated");
+        }
+
         return this.i18n.t("teams.status.playing");
     }
 
-    badgeStyle(outcome) {
-        if (outcome.place === 1) return "background:#f5c24a;color:#000;";
-        if (outcome.place !== null) return "background:#ddd;color:#000;";
-        if (outcome.status === "odpadli") return "background:#eee;color:#666;";
-        return "background:#cde;color:#000;";
+    badgeClass(outcome) {
+        if (outcome.place === 1) return "winner";
+        if (typeof outcome.place === "number") return "place";
+        if (outcome.status === "odpadli" || outcome.status === "eliminated") return "out";
+        return "";
+    }
+
+    escape(str) {
+        return String(str ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;");
     }
 }
