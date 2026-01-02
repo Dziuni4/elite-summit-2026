@@ -51,7 +51,12 @@
       "teams.status.playing": "w grze",
       "teams.status.eliminated": "odpadli",
       "teams.status.winner": "zwycięzca",
-      "teams.place": "Miejsce"
+      "teams.place": "Miejsce",
+      "news.title": "📢 Aktualności",
+      "news.hint": "Ogłoszenia przed i w trakcie turnieju. Edytujesz w pliku JSON.",
+      "news.tba": "TBA",
+      "news.date": "Data"
+
 
 
     },
@@ -91,7 +96,12 @@
       "teams.status.playing": "playing",
       "teams.status.eliminated": "eliminated",
       "teams.status.winner": "winner",
-      "teams.place": "Place"
+      "teams.place": "Place",
+      "news.title": "📢 News",
+      "news.hint": "Announcements before and during the tournament. Edit in the JSON file.",
+      "news.tba": "TBA",
+      "news.date": "Date"
+
 
 
     }
@@ -170,6 +180,13 @@
       "at": null,
       "title": "Start zapisów",
       "body": "Wkrótce podamy szczegóły zapisów i regulamin."
+    },
+    {
+      "id": "n2",
+      "at": "2026-01-02T20:00:00+01:00",
+      "title": "Ustalamy datę turnieju",
+      "body": "Daj znać na Discordzie, które terminy pasują drużynom."
     }
+
   ]
 }

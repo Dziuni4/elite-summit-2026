@@ -6,6 +6,8 @@ import { TwitchRenderer } from "./ui/twitchRenderer.js";
 import { BracketRenderer } from "./ui/bracketRenderer.js";
 import { ScheduleRenderer } from "./ui/scheduleRenderer.js";
 import { TeamsRenderer } from "./ui/teamsRenderer.js";
+import { NewsRenderer } from "./ui/newsRenderer.js";
+
 
 
 
@@ -24,6 +26,8 @@ const twitchRenderer = new TwitchRenderer({ i18n });
 let bracketRenderer = null;
 let scheduleRenderer = null;
 let teamsRenderer = null;
+let newsRenderer = null;
+
 
 
 
@@ -68,6 +72,12 @@ app.onRender((evt) => {
         teamsRenderer = new TeamsRenderer({ i18n });
     }
     teamsRenderer.render(tournament, evt.state.outcomes);
+
+    if (!newsRenderer) {
+        newsRenderer = new NewsRenderer({ i18n });
+    }
+    newsRenderer.render(tournament);
+
 
 
 
