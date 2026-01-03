@@ -18,73 +18,58 @@ export class RulesRenderer {
         if (!tournament) return;
 
         const meta = tournament.meta ?? {};
+        const fee = Number(meta.entryFee ?? meta.fee ?? 0);
+        const players = Number(meta.teamSize ?? 5);
+        const teamsCount = Number(meta.teamsCount ?? meta.teams ?? 0);
+        const total = teamsCount ? teamsCount * players * fee : players * fee;
 
-        // Dopasowanie struktury do styles.css:
-        // - sekcja: .section
-        // - wrapper: .container.grid2
-        // - karty: .card
+        // Layout / klasy (żeby pasowało do styles.css i nie było inline)
         this.applyLayoutClasses();
 
-        // Tytuły
         if (this.$title) this.$title.textContent = this.i18n.t("rules.title");
 
-        if (this.$feesTitle) this.$feesTitle.textContent = this.i18n.t("rules.feesTitle");
-        if (this.$rulesShortTitle) this.$rulesShortTitle.textContent = this.i18n.t("rules.shortTitle");
-
-        // Wpisowe / płatności
-        const entryFee = meta.entryFee ?? meta.fee ?? null; // wspiera różne klucze
-        const teamSize = meta.teamSize ?? 5;
-        const teamsCount = meta.teamsCount ?? meta.teams ?? null;
+        if (this.$feesTitle) this.$feesTitle.textContent = this.i18n.t("rules.fees.title");
 
         if (this.$feesText) {
-            // Możesz trzymać to w i18n, ale fallback też działa
-            this.$feesText.textContent =
-                this.i18n.t("rules.feesText") ||
-                (entryFee
-                    ? `Wpisowe: ${entryFee} zł / osoba`
-                    : "Wpisowe: —");
+            this.$feesText.textContent = this.i18n.t("rules.fees.text", { fee });
             this.$feesText.classList.add("muted");
+            this.$feesText.removeAttribute("style");
         }
 
         if (this.$feesSummary) {
-            // Podsumowanie (np. „8 drużyn po 5 osób”)
-            let summary = this.i18n.t("rules.feesSummary");
-            if (!summary || summary === "rules.feesSummary") {
-                const teamsPart = teamsCount ? `${teamsCount} drużyn` : "Drużyny";
-                summary = `${teamsPart} po ${teamSize} osób`;
-            }
-            this.$feesSummary.textContent = summary;
+            this.$feesSummary.textContent = this.i18n.t("rules.fees.summary", {
+                players,
+                fee,
+                total,
+            });
+            this.$feesSummary.removeAttribute("style");
         }
 
         if (this.$payments) {
-            const payments = this.i18n.t("rules.payments") || meta.payments || "";
-            this.$payments.textContent = payments;
+            this.$payments.textContent = this.i18n.t("rules.payments");
             this.$payments.classList.add("muted", "small");
             this.$payments.removeAttribute("style");
         }
 
-        // Lista zasad
-        if (this.$rulesList) {
-            this.$rulesList.removeAttribute("style");
-
-            const list = Array.isArray(meta.rulesShort)
-                ? meta.rulesShort
-                : [
-                    this.i18n.t("rules.list.1"),
-                    this.i18n.t("rules.list.2"),
-                    this.i18n.t("rules.list.3"),
-                ].filter(Boolean);
-
-            this.$rulesList.innerHTML = list.map((x) => `<li>${this.escape(x)}</li>`).join("");
+        if (this.$rulesShortTitle) {
+            this.$rulesShortTitle.textContent = this.i18n.t("rules.short.title");
         }
 
-        // PDF z zasadami
+        if (this.$rulesList) {
+            this.$rulesList.removeAttribute("style");
+            this.$rulesList.innerHTML = `
+        <li>${this.escape(this.i18n.t("rules.list.1"))}</li>
+        <li>${this.escape(this.i18n.t("rules.list.2"))}</li>
+        <li>${this.escape(this.i18n.t("rules.list.3"))}</li>
+      `;
+        }
+
         if (this.$rulesPdf) {
             if (meta.rulesPdfUrl) {
                 this.$rulesPdf.href = meta.rulesPdfUrl;
                 this.$rulesPdf.textContent = this.i18n.t("rules.pdf");
+                this.$rulesPdf.classList.add("btn");
                 this.$rulesPdf.style.display = "inline";
-                this.$rulesPdf.classList.add("btn"); // w styles.css jest .btn
             } else {
                 this.$rulesPdf.style.display = "none";
             }
@@ -92,11 +77,9 @@ export class RulesRenderer {
     }
 
     applyLayoutClasses() {
-        // Sekcja
         const section = this.$title?.closest("section");
         if (section) section.classList.add("section");
 
-        // Karty (najbliższy DIV od nagłówków)
         const feesCard = this.$feesTitle?.closest("div");
         const rulesCard = this.$rulesShortTitle?.closest("div");
 
@@ -104,13 +87,11 @@ export class RulesRenderer {
             feesCard.classList.add("card");
             feesCard.removeAttribute("style");
         }
-
         if (rulesCard) {
             rulesCard.classList.add("card");
             rulesCard.removeAttribute("style");
         }
 
-        // Wrapper grid (rodzic kart)
         const grid = feesCard?.parentElement;
         if (grid) {
             grid.classList.add("container", "grid2");
