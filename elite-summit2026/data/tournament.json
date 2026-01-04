@@ -154,7 +154,7 @@
       "stage": "qf1",
       "teamA": "t1",
       "teamB": "t8",
-      "status": "live",
+      "status": "upcoming",
       "maps": [
         {"map":"Mirage","a":13,"b":9},
         {"map":"Nuke","a":8,"b":13},
