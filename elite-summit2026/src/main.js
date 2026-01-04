@@ -33,11 +33,6 @@ let newsRenderer = null;
 let rulesRenderer = null;
 let footerRenderer = null;
 
-
-
-
-
-
 // Language buttons
 document.getElementById("langPL").addEventListener("click", () => app.setLang(Lang.PL));
 document.getElementById("langEN").addEventListener("click", () => app.setLang(Lang.EN));

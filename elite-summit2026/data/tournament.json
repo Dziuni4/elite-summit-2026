@@ -57,7 +57,7 @@
       "teams.status.winner": "zwycięzca",
       "teams.place": "Miejsce",
       "news.title": "📢 Aktualności",
-      "news.hint": "Ogłoszenia przed i w trakcie turnieju. Edytujesz w pliku JSON.",
+      "news.hint": "",
       "news.tba": "TBA",
       "news.date": "Data",
       "rules.title": "💰 Wpisowe i zasady",
