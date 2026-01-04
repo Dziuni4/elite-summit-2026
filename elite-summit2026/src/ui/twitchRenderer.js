@@ -11,26 +11,46 @@ export class TwitchRenderer {
     }
 
     render(tournament) {
-        const channel = tournament?.twitch?.channel ?? "";
-        const parents = tournament?.twitch?.parents ?? [];
+        if (!tournament) return;
 
-        // tytuł i link
-        this.$title.textContent = this.i18n.t("live.title");
-        this.$open.textContent = this.i18n.t("live.open");
+        const channel = tournament?.twitch?.channel ?? "";
+        const parentsFromJson = tournament?.twitch?.parents ?? [];
+        const parents = TwitchEmbed.deriveParents(parentsFromJson);
+
+        // Styl sekcji jak reszta (bez grzebania w index.html)
+        const section = this.$title?.closest("section");
+        if (section) section.classList.add("section");
+
+        // Tytuł + link
+        if (this.$title) this.$title.textContent = this.i18n.t("live.title");
+
+        if (this.$open) {
+            this.$open.textContent = this.i18n.t("live.open");
+            this.$open.classList.add("btn", "btn--ghost");
+            this.$open.target = "_blank";
+            this.$open.rel = "noopener";
+        }
+
+        if (this.$hint) {
+            // hint stylowany, ale domyślnie nie spamujemy
+            this.$hint.classList.add("muted", "small");
+            this.$hint.removeAttribute("style");
+            this.$hint.textContent = "";
+        }
 
         if (!channel) {
-            this.$container.innerHTML = "";
-            this.$hint.textContent = this.i18n.t("live.noChannel");
-            this.$open.href = "#";
+            if (this.$container) this.$container.innerHTML = "";
+            if (this.$hint) this.$hint.textContent = this.i18n.t("live.noChannel");
+            if (this.$open) this.$open.href = "#";
             return;
         }
 
-        this.$open.href = TwitchEmbed.buildChannelUrl(channel);
+        if (this.$open) this.$open.href = TwitchEmbed.buildChannelUrl(channel);
 
-        // brak parents => fallback zamiast iframe (żeby nie było "Refused to display")
+        // Jeśli z jakiegoś powodu nadal nie mamy parents (bardzo rzadkie)
         if (!TwitchEmbed.hasValidParents(parents)) {
-            this.$container.innerHTML = "";
-            this.$hint.textContent = this.i18n.t("live.missingParents");
+            if (this.$container) this.$container.innerHTML = "";
+            if (this.$hint) this.$hint.textContent = this.i18n.t("live.missingParents");
             return;
         }
 
@@ -38,19 +58,23 @@ export class TwitchRenderer {
             channel,
             parents,
             muted: false,
-            autoplay: true
+            autoplay: true,
         });
 
-        this.$hint.textContent = `parent: ${parents.join(", ")}`;
+        if (this.$container) {
+            // CSS już masz: .ratio + iframe
+            this.$container.innerHTML = `
+        <div class="ratio">
+          <iframe
+            src="${src}"
+            allowfullscreen="true"
+            scrolling="no">
+          </iframe>
+        </div>
+      `;
+        }
 
-        this.$container.innerHTML = `
-            <div class="ratio">
-                <iframe
-                    src="${src}"
-                    allowfullscreen="true"
-                    scrolling="no">
-                </iframe>
-            </div>
-        `;
+        // Opcjonalnie: pokaż parents tylko w dev (jak chcesz)
+        // if (this.$hint) this.$hint.textContent = `parent: ${parents.join(", ")}`;
     }
 }

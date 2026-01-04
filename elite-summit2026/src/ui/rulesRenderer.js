@@ -18,10 +18,10 @@ export class RulesRenderer {
         if (!tournament) return;
 
         const meta = tournament.meta ?? {};
-        const fee = Number(meta.entryFee ?? meta.fee ?? 0);
-        const players = Number(meta.teamSize ?? 5);
-        const teamsCount = Number(meta.teamsCount ?? meta.teams ?? 0);
-        const total = teamsCount ? teamsCount * players * fee : players * fee;
+        const fee = Number(meta.entryFee ?? meta.fee ?? 20);
+        const players = Number(meta.teamSize ?? 40);
+        const teamsCount = Number(meta.teamsCount ?? meta.teams ?? 8);
+        const total = Number(meta.total ?? 800);
 
         // Layout / klasy (żeby pasowało do styles.css i nie było inline)
         this.applyLayoutClasses();

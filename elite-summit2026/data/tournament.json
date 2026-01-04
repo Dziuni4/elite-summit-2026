@@ -14,8 +14,10 @@
   },
   "twitch": {
     "channel": "nailixaa_",
-    "parents": []
+    "parents": ["localhost", "127.0.0.1"]
   },
+
+
   "i18n": {
     "pl": {
       "nav.info": "Info",
